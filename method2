@@ -1,0 +1,38 @@
+#include <iostream>
+#include <fstream>
+using namespace std;
+//방법2
+void mul5(int* xx, int x) {
+	int mul5 = 0;
+	for (int i = 0; i < 5; i++) {
+		xx[i] = 5 * x * (i + 1);
+		mul5 += xx[i];
+	}
+}
+void square(float* yy, float y) {
+	float square = 0;
+	for (int i = 0; i < 3; i++) {
+		yy[i] = (y + (0.5 * i)) * (y + (0.5 * i));
+		square += yy[i];
+	}
+}
+int main() {
+	int a = 1234;
+	int* xxx = new int[5];
+	float* yyy = new float[3];
+	ofstream ff("mybin2.dat");
+	if (!ff) {
+		cout << "no file";
+		return 1;
+	}
+	ff.write((char*)&a, sizeof(int));
+	mul5(xxx, 1000);
+	ff.write((char*)xxx, sizeof(int) * 5);
+	delete xxx;
+	square(yyy, -0.5);
+	ff.write((char*)yyy, sizeof(float) * 3);
+	delete yyy;
+	ff.close();
+
+	return 0;
+}
