@@ -1,0 +1,33 @@
+#include <iostream>
+#include <fstream>
+using namespace std;
+//방법1
+int mul5(int x) {
+	return 5 * x;
+}
+float square(float x) {
+	return x * x;
+}
+int main() {
+	int a = 1234;
+	int* xx = new int[5];
+	float* yy = new float[3];
+	ofstream ff("mybin1.dat");
+	if (!ff) {
+		cout << "no file";
+		return 1;
+	}
+	ff.write((char*)&a, sizeof(int));
+	for (int i = 0; i < 5; i++) {
+		xx[i] = mul5(1000 * (i + 1));
+	}
+	ff.write((char*)xx, sizeof(int) * 5);
+	delete xx;
+	for (int i = 0; i < 3; i++) {
+		yy[i] = square(-0.5 + (0.5 * i));
+	}
+	ff.write((char*)yy, sizeof(float) * 3);
+	delete yy;
+	ff.close();
+	return 0;
+}
