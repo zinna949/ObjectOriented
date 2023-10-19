@@ -1,0 +1,31 @@
+#include <iostream>
+#include <fstream>
+using namespace std;
+//방법4
+void mul5(int* xx, int x, int n) {
+	for (int i = 0; i < n; i++) {
+		xx[i] = 5 * x * (i + 1);
+	}
+}
+void square(float* yy, float y, int n) {
+	for (int i = 0; i < n; i++) {
+		yy[i] = (y + (0.5 * i)) * (y + (0.5 * i));
+	}
+}
+void All(string ss) {
+	int* aa;
+	aa = new int[9];
+
+	int a = 1234;
+	aa[0] = a;
+	mul5(aa + 1, 1000, 5);
+	square((float*)(aa + 6), -0.5, 3);
+	ofstream ff(ss, ios::binary | ios::out);
+	ff.write((char*)aa, sizeof(int) * 9);
+	delete aa;
+	ff.close();
+}
+int main() {
+	All("mybin4.dat");
+	return 0;
+}
