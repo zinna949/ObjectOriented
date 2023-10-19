@@ -1,0 +1,26 @@
+#include <iostream>
+#include <fstream>
+using namespace std;
+//방법3
+void method3_1(int* ptr, int init) {
+	for (int i =0; i < 5; i++) {
+		ptr[i] = init*5;
+		init += 1000;
+	}
+}
+void method3_2(float* ptr, float init) {
+	for (int i = 0; i < 3; i++) {
+		ptr[i] = init * init;
+		init += 0.5;
+	}
+}
+int main() {
+	int *ptr=new int[9];
+	ptr[0] = 1234;
+	method3_1((ptr+1),1000);
+	method3_2((float*)(ptr+6), -0.5);
+	xx.write((char*)ptr, sizeof(int) * 9);
+	delete ptr;
+	xx.close();
+	return 0;
+}
